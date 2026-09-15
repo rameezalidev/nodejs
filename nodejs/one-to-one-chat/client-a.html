@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Client A</title>
+</head>
+
+<body>
+
+    <h1>Ali</h1>
+<input id="message">
+
+<button id="send">
+    Send
+</button>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+
+    <script>
+
+        const userId = "ali";
+        const socket = io("http://localhost:5000");
+        const messageInput = document.getElementById("message");
+const sendButton = document.getElementById("send");
+socket.on("connect",()=>{ 
+    socket.emit("register", userId);
+})
+sendButton.addEventListener("click", () => {
+
+    const message = messageInput.value;
+
+    socket.emit("send_message", message);
+
+});
+socket.emit("private_message", {
+
+    senderId: "ali",
+
+    receiverId: "ahmed",
+
+    message: "Hello Ahmed"
+
+});
+
+socket.on("receive_message",(data)=>{
+    console.log(data);
+})
+    </script>
+
+</body>
+
+</html> 

@@ -1,0 +1,2 @@
+hello from stream
+i am text added from stream

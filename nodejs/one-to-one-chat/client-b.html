@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Client B</title>
+</head>
+
+<body>
+
+    <h1>Ahmed</h1>
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+
+    <script>
+        const userId = "ahmed";
+        const socket = io("http://localhost:5000");
+
+        socket.on("connect", () => {
+            socket.emit("register", userId);
+            console.log("Connected to server");
+
+            console.log("My socket ID:", socket.id);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
